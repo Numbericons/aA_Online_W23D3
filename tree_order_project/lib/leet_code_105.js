@@ -17,8 +17,8 @@ function buildTree(preorder, inorder) {
   let leftPreorder = preorder.filter((val) => leftInorder.includes(val));
   let rightPreorder = preorder.filter((val) => rightInorder.includes(val));
 
-  buildTree(leftPreorder, leftInorder);
-  buildTree(rightPreorder, rightInorder);
+  let leftTree = buildTree(leftPreorder, leftInorder);
+  let rightTree = buildTree(rightPreorder, rightInorder);
 
   root.left = leftTree;
   root.right = rightTree;

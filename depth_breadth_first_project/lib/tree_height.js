@@ -1,5 +1,5 @@
 function treeHeight(root) {
-
+    if (!root) return -1;
 }
 
 

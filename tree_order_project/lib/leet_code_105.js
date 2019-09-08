@@ -9,19 +9,19 @@ function buildTree(preorder, inorder) {
   
   let rootVal = preorder[0];
   let root = new TreeNode(rootVal);
+
   let midIdx = inorder.indexOf(rootVal);
   let leftInorder = inorder.slice(0, midIdx);
   let rightInorder = inorder.slice(midIdx + 1);
 
-  let sequence = [];
-  while (preorder.length) {
-    let parent = preorder.shift();
-    sequence.push(parent);
-    preorder.shift();
-    let left = inorder.shift();
-    sequence.push(left);
-    inorder.shift();
-  }
+  let leftPreorder = preorder.filter((val) => leftInorder.includes(val));
+  let rightPreorder = preorder.filter((val) => rightInorder.includes(val));
 
-  return sequence;
+  buildTree(leftPreorder, leftInorder);
+  buildTree(rightPreorder, rightInorder);
+
+  root.left = leftTree;
+  root.right = rightTree;
+
+  return root;
 }
